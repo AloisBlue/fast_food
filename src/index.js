@@ -5,11 +5,14 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import jwtDecode from "jwt-decode";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import "bootstrap";
 import App from './App';
 import rootReducer from "./rootReducer";
+import setAuthToken from "./utils/setAuthToken";
+import { loginUser, logout } from "./actions/auth";
 import * as serviceWorker from './serviceWorker';
 
 // create store
@@ -17,6 +20,21 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+if (localStorage.rosewoodJwt) {
+  // set auth headers
+  setAuthToken(localStorage.rosewoodJwt)
+
+  // set user & isAuthenticated
+  store.dispatch(loginUser(jwtDecode(localStorage.rosewoodJwt)));
+
+  // check expiration
+  const currentTime = Date.now /1000;
+  if (jwtDecode(localStorage.rosewoodJwt).exp < currentTime) {
+    store.dispatch(logout());
+    window.location.href = '/'
+  }
+}
 
 ReactDOM.render(
   <BrowserRouter>

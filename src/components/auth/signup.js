@@ -46,7 +46,7 @@ class Signup extends Component {
               <h1 className="text-center display-4 text-maroon">Sign Up</h1>
               <p className="text-center">Sign up for an account with Rosewood Food Sellers</p>
               {errors.global &&
-                <div className="card card-body col-8 text-danger">
+                <div className="card card-body text-danger">
                   <h2>Something went wrong</h2>
                   <p>{errors.global}</p>
                 </div>
@@ -112,7 +112,7 @@ class Signup extends Component {
                   onChange={this.onChange}
                   error={errors.confirmPassword}
                 />
-                <input type="submit" className="btn maroon btn-block mt-4"/>
+              <input type="submit" value="Signup" className="btn maroon btn-block mt-4"/>
               </form>
             </div>
           </div>
