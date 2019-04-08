@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import { Route } from "react-router-dom";
+import Footer from "./components/layout/footer";
+import Slider from "./components/layout/slider";
+import Navbar from "./components/layout/navbar";
+import Landing from "./components/layout/landing";
+import Menu from "./components/layout/menu";
+import Signup from "./components/auth/signup";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+const App = () => {
+  return (
+    <div className="App">
+      <div className="container">
+        <Slider />
+        <Navbar />
+        <Route path="/" exact component={Landing} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/menu" exact component={Menu} />
+        <Footer />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default App;
