@@ -7,7 +7,7 @@ import Slider from "./components/layout/slider";
 import Navbar from "./components/layout/navbar";
 import Landing from "./components/layout/landing";
 import GuestRoute from "./components/routes/guestRoute";
-import UserRoute from "./components/routes/userRoute";
+// import UserRoute from "./components/routes/userRoute";
 import Signup from "./components/auth/signup";
 import Login from "./components/auth/login";
 import MainMenu from "./components/menu/mainMenu";
@@ -16,14 +16,14 @@ import SingleMenu from "./components/singlemenu/singleMenu";
 const App = ({ location }) => {
   return (
     <div className="App">
-      <div className="container">
+      <div className="container card bg-pink p-1">
         <Slider />
         <Navbar />
-        <Route path="/" exact component={Landing} />
-        <Route path="/menu/:id" exact component={SingleMenu} />
-        <GuestRoute path="/signup" exact component={Signup} />
-        <GuestRoute path="/login" exact component={Login} />
-        <Route path="/menu" exact component={MainMenu} />
+        <Route location={location} path="/" exact component={Landing} />
+        <Route location={location} path="/menu/:id" exact component={SingleMenu} />
+        <GuestRoute location={location} path="/signup" exact component={Signup} />
+        <GuestRoute location={location} path="/login" exact component={Login} />
+        <Route location={location} path="/menu" exact component={MainMenu} />
         <Footer />
       </div>
     </div>

@@ -20,5 +20,11 @@ export default {
       axios
         .get(`/api/menus/menu/${id}`)
         .then(res => res.data)
+  },
+  order: {
+    makeOrder: addOrder =>
+      axios
+        .post("/api/orders/order", { addOrder })
+        .then(res => res.data)
   }
 }

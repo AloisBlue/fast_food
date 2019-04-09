@@ -55,6 +55,10 @@ body {
   background-color: #fff3ee;
 }
 
+.bg-pink {
+  background-color: #FFDECE;
+}
+
 .welcome-text {
   font-size: 15px;
 }

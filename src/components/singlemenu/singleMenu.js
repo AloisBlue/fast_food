@@ -14,7 +14,6 @@ class SingleMenu extends Component {
   render() {
     const { singleMenu, loading } = this.props;
     let menuDisplay;
-    console.log(loading, singleMenu);
 
     if (singleMenu === null || loading) {
       menuDisplay = <p>loading...</p>
@@ -27,10 +26,10 @@ class SingleMenu extends Component {
 
     return (
       <div className="singlemenu">
-        <div className="container">
+        <div className="container mb-3">
           <div className="col-md-10 m-auto">
-            <div className="card bg-pinkish">
-              <p>{menuDisplay}</p>
+            <div className="card bg-light">
+              <span>{menuDisplay}</span>
             </div>
           </div>
         </div>

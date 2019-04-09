@@ -19,9 +19,9 @@ class MenuItems extends Component {
     }
 
     return(
-      <div className="card col-3 text-center bg-pinkish mb-3 p-1">
+      <div className="card bg-pinkish col-12 text-center mb-3 mr-2 p-3">
         <div className="row">
-          <div className="m-auto">
+          <div className="m-auto card">
             <h5 className="bg-warning">{menu.item}</h5>
             <img
               className="bg-info"

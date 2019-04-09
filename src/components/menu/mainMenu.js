@@ -18,7 +18,9 @@ class MainMenu extends Component {
       menuItems = <p>Loading ...</p>
     } else if (allMenu.menu.length > 0) {
       menuItems = allMenu.menu.map(menu => (
-        <MenuItems key={menu._id} menu={menu} />
+        <div className="float-left mr-1">
+          <MenuItems key={menu._id} menu={menu} />
+        </div>
       ))
     } else {
       menuItems = <h4>No menu available ...</h4>
@@ -27,7 +29,9 @@ class MainMenu extends Component {
       <div className="mainmenu">
         <h4 className="text-center text-maroon">Hot Stuff...Prepared by the best</h4>
         <p className="text-center">Make an order now!!!</p>
-        <span>{ menuItems }</span>
+        <div>
+          <span>{ menuItems }</span>
+        </div>
       </div>
     );
   }

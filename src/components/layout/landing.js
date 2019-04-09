@@ -43,9 +43,11 @@ const LandingRight = () => {
 
 const Landing = () => {
   return (
-    <div>
-      <Menu />
+    <div className="menu">
       <div className="row">
+        <div className="col-md-10 m-auto">
+          <Menu />
+        </div>
         <div className="col-md-8">
           <LandingLeft />
         </div>
