@@ -28,10 +28,10 @@ export const fetchMenu = () => (dispatch) => {
     });
 }
 
-export const fetchSingleMenu = (id) => (dispatch)  => {
+export const fetchSingleMenu = id => (dispatch)  => {
   dispatch(menuLoading());
   api.menu
-    .get(id)
+    .fetchSingleMenu(id)
     .then(menu => {
       dispatch(getSingleMenu(menu));
     })

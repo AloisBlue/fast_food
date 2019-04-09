@@ -16,7 +16,7 @@ export default {
       axios
         .get("/api/menus/menu")
         .then(res => res.data),
-    fetchSingleMenu: (id) =>
+    fetchSingleMenu: id =>
       axios
         .get(`/api/menus/menu/${id}`)
         .then(res => res.data)

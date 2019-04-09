@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class MenuItems extends Component {
   state = {
@@ -41,7 +42,7 @@ class MenuItems extends Component {
               {more ? ('less') : ('more')}
             </p>
             <span>{moreView}</span>
-            <button type="button" className="btn btn-success btn-block">Order</button>
+            <Link to={`/menu/${menu._id}`} className="btn btn-success btn-block">Order</Link>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import UserRoute from "./components/routes/userRoute";
 import Signup from "./components/auth/signup";
 import Login from "./components/auth/login";
 import MainMenu from "./components/menu/mainMenu";
+import SingleMenu from "./components/singlemenu/singleMenu";
 
 const App = ({ location }) => {
   return (
@@ -19,6 +20,7 @@ const App = ({ location }) => {
         <Slider />
         <Navbar />
         <Route path="/" exact component={Landing} />
+        <Route path="/menu/:id" exact component={SingleMenu} />
         <GuestRoute path="/signup" exact component={Signup} />
         <GuestRoute path="/login" exact component={Login} />
         <Route path="/menu" exact component={MainMenu} />
