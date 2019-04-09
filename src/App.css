@@ -51,6 +51,10 @@ body {
   font-family: sans-serif;
 }
 
+.bg-pinkish {
+  background-color: #fff3ee;
+}
+
 .welcome-text {
   font-size: 15px;
 }

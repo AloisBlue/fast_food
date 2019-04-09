@@ -12,7 +12,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, isAdmin } = this.props;
     return (
       <div>
         <div className="banner" align="right">
@@ -32,20 +32,39 @@ class Navbar extends Component {
                 <Link className="nav-link" to="/menu">Menu</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/order">Orders</Link>
+                  {
+                    isAuthenticated ? (
+                      <Link className="nav-link" to="/order">Orders</Link>
+                    ) : (
+                      null
+                    )
+                  }
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/admin">Admin</Link>
+                  {
+                    isAdmin ? (
+                      <Link className="nav-link" to="/admin">Admin</Link>
+                    ) : (
+                      null
+                    )
+                  }
               </li>
             </ul>
 
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                  <Link className="nav-link" to="/signup">Signup</Link>
+                    {
+                      isAuthenticated ? (
+                        null
+                      ) : (
+                        <Link className="nav-link" to="/signup">Signup</Link>
+                      )
+                    }
               </li>
               <li className="nav-item">
                   {
                     isAuthenticated ? (
+                      // eslint-disable-next-line
                       <a
                         className="nav-link"
                         href=""
@@ -70,11 +89,13 @@ class Navbar extends Component {
 Navbar.propTypes = {
   isAuthenticated: PropTypes.func.isRequired,
   clearCurrentUser: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user.isAuthenticated
+  isAuthenticated: state.user.isAuthenticated,
+  isAdmin: state.user.user.isAdmin
 })
 
 export default  connect(mapStateToProps, { clearCurrentUser, logout })(Navbar);

@@ -1,5 +1,6 @@
 import jwtDecode from "jwt-decode";
-import { USER_REGISTERED, GET_ERRORS, USER_LOGGED_IN, CLEAR_ERROR, USER_LOGGED_OUT,CLEAR_CURRENT_USER } from "../types";
+import { USER_REGISTERED, GET_ERRORS, USER_LOGGED_IN, CLEAR_ERROR,
+          USER_LOGGED_OUT,CLEAR_CURRENT_USER } from "../types";
 import api from "../api";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -51,7 +52,7 @@ export const login = (credentials, history) => (dispatch) => {
       setAuthToken(user.token)
       dispatch(clearError());
       dispatch(loginUser(jwtDecode(user.token)))
-      history.push("/menu");
+      history.push("/order");
     })
     .catch(err => {
       dispatch(getErrors(err));
