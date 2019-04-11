@@ -34,7 +34,7 @@ class Navbar extends Component {
               <li className="nav-item">
                   {
                     isAuthenticated ? (
-                      <Link className="nav-link" to="/order">Orders</Link>
+                      <Link className="nav-link" to="/orders">Orders</Link>
                     ) : (
                       null
                     )

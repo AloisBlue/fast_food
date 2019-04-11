@@ -59,6 +59,14 @@ body {
   background-color: #FFDECE;
 }
 
+.bg-black {
+  background-color: #000000;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
 .welcome-text {
   font-size: 15px;
 }

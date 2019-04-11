@@ -25,6 +25,10 @@ export default {
     makeOrder: addOrder =>
       axios
         .post("/api/orders/order", { addOrder })
+        .then(res => res.data),
+    getOrders: () =>
+      axios
+        .get("/api/orders/orders/user")
         .then(res => res.data)
   }
 }

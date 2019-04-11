@@ -30,11 +30,13 @@ class OrderForm extends Component {
     const {singleMenu} = this.props;
     // get value of item
     const value = singleMenu.item
-    // append item into the payload
-    this.state.data.item = value
-
+    // set item into the payload
+    this.setState({
+      ...this.state,
+      data: {...this.state.data, item: value}
+    },
     // send data to api
-    this.props.makeOrder(this.state.data, this.props.history)
+    () => this.props.makeOrder(this.state.data, this.props.history));
   }
 
   render() {
@@ -65,7 +67,10 @@ class OrderForm extends Component {
 OrderForm.propTypes = {
   makeOrder: PropTypes.func.isRequired,
   singleMenu: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    path:PropTypes.string.isRequired
+  }).isRequired
 }
 
 const mapStateToProps = state => ({

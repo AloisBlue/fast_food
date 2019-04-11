@@ -52,7 +52,7 @@ export const login = (credentials, history) => (dispatch) => {
       setAuthToken(user.token)
       dispatch(clearError());
       dispatch(loginUser(jwtDecode(user.token)))
-      history.push("/order");
+      history.push("/orders");
     })
     .catch(err => {
       dispatch(getErrors(err));

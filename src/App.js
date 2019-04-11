@@ -7,11 +7,12 @@ import Slider from "./components/layout/slider";
 import Navbar from "./components/layout/navbar";
 import Landing from "./components/layout/landing";
 import GuestRoute from "./components/routes/guestRoute";
-// import UserRoute from "./components/routes/userRoute";
+import UserRoute from "./components/routes/userRoute";
 import Signup from "./components/auth/signup";
 import Login from "./components/auth/login";
 import MainMenu from "./components/menu/mainMenu";
 import SingleMenu from "./components/singlemenu/singleMenu";
+import Orders from "./components/orders/orders";
 
 const App = ({ location }) => {
   return (
@@ -20,6 +21,7 @@ const App = ({ location }) => {
         <Slider />
         <Navbar />
         <Route location={location} path="/" exact component={Landing} />
+        <UserRoute location={location} path="/orders" exact component={Orders} />
         <Route location={location} path="/menu/:id" exact component={SingleMenu} />
         <GuestRoute location={location} path="/signup" exact component={Signup} />
         <GuestRoute location={location} path="/login" exact component={Login} />
