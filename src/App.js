@@ -8,11 +8,16 @@ import Navbar from "./components/layout/navbar";
 import Landing from "./components/layout/landing";
 import GuestRoute from "./components/routes/guestRoute";
 import UserRoute from "./components/routes/userRoute";
+import AdminRoute from "./components/routes/adminRoute";
 import Signup from "./components/auth/signup";
 import Login from "./components/auth/login";
 import MainMenu from "./components/menu/mainMenu";
 import SingleMenu from "./components/singlemenu/singleMenu";
 import Orders from "./components/orders/orders";
+import AdminOrders from "./components/admin/adminOrders";
+import CompletedOrder from "./components/admin/completedOrder";
+import ManageMenu from "./components/admin/manageMenu";
+import MenuForm from "./components/admin/menuForm";
 
 const App = ({ location }) => {
   return (
@@ -21,6 +26,10 @@ const App = ({ location }) => {
         <Slider />
         <Navbar />
         <Route location={location} path="/" exact component={Landing} />
+        <AdminRoute location={location} path="/addmenu" exact component={MenuForm} />
+        <AdminRoute location={location} path="/admin" exact component={AdminOrders} />
+        <AdminRoute location={location} path="/complete" exact component={CompletedOrder} />
+        <AdminRoute location={location} path="/managemenu" exact component={ManageMenu} />
         <UserRoute location={location} path="/orders" exact component={Orders} />
         <Route location={location} path="/menu/:id" exact component={SingleMenu} />
         <GuestRoute location={location} path="/signup" exact component={Signup} />
@@ -34,7 +43,7 @@ const App = ({ location }) => {
 
 App.propTypes = {
   location: PropTypes.shape({
-    path: PropTypes.string.isRequired
+    pathname: PropTypes.string.isRequired
   }).isRequired
 }
 

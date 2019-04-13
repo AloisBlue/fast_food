@@ -1,6 +1,7 @@
-import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING } from "../types";
+import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING, ADMIN_GET_ORDERS } from "../types";
 
 const initial = {
+  adminOrders: null,
   orders: null,
   order: null,
   loading: false
@@ -21,6 +22,12 @@ const orders = (state = initial, action = {}) => {
         orders: action.payload,
         loading: false
       };
+    case ADMIN_GET_ORDERS:
+      return {
+        ...state,
+        adminOrders: action.payload,
+        loading: false
+      }
     default:
       return state;
   }

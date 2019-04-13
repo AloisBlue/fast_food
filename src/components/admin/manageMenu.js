@@ -1,25 +1,26 @@
-import React, { Component } from 'react';
-import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import OrderActions from "./orderActions";
-import { adminGetOrders } from "../../actions/order"
+import { fetchMenu } from "../../actions/menu"
+import MenuActions from "./menuActions";
 
-class AdminOrders extends Component {
+class ManageMenu extends Component {
+
   componentDidMount() {
-    this.props.adminGetOrders();
+    this.props.fetchMenu();
   }
 
   render() {
-    const { adminOrders, loading } = this.props;
-    let adminView;
+    const { allMenu, loading } = this.props;
+    let menuView;
 
-    if (adminOrders === null || loading) {
-      adminView = <p>Loading ...</p>
-    } else if (adminOrders.count > 0) {
-      adminView = <OrderActions adminOrders={adminOrders} />
+    if (allMenu ===null || loading) {
+      menuView = <p>Loading...</p>
+    } else if (allMenu.count > 0) {
+      menuView = <MenuActions allMenu={allMenu} />
     } else {
-      adminView = <p>No orders available</p>
+      menuView = <p>No menu available</p>
     }
 
     return(
@@ -38,11 +39,11 @@ class AdminOrders extends Component {
               </li>
             </ul>
           </nav>
+          <Link className="btn btn-light text-maroon ml-3 mb-2" to="/addmenu">Add Menu Item</Link>
           <div className="row">
             <div className="card card-body mb-2">
-              <p className="card lead text-center bg-black text-white p-1">Orders Received</p>
-
-              {adminView}
+              <h2 className="text-center">Manage Menu</h2>
+              {menuView}
             </div>
           </div>
         </div>
@@ -51,15 +52,15 @@ class AdminOrders extends Component {
   }
 }
 
-AdminOrders.propTypes = {
+ManageMenu.propTypes = {
+  fetchMenu: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  adminGetOrders: PropTypes.func.isRequired,
-  adminOrders: PropTypes.object.isRequired
+  allMenu: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  adminOrders: state.order.adminOrders,
-  loading: state.order.loading
+  allMenu: state.menu.allMenu,
+  loading: state.menu.loading
 });
 
-export default connect(mapStateToProps, { adminGetOrders })(AdminOrders);
+export default connect(mapStateToProps, { fetchMenu })(ManageMenu);

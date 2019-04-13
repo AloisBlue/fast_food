@@ -75,6 +75,24 @@ body {
   font-size: 14px;
 }
 
+.btn-edit{
+  background-color: #b64a23;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: maroon;
+  color: white;
+}
+
+.btn-delete{
+  background-color:  red;
+  color: white;
+}
+.btn-delete:hover {
+  background-color: #000000;
+  color: white;
+}
+
 /* footer */
 .footer {
   clear: both;
@@ -89,7 +107,19 @@ body {
   padding: 10px;
 }
 
+.signer {
+  font-size: 0.9em;
+  padding: 5px 8px;
+  border: #ffc0cb 1px solid;
+  border-radius: 10px;
+}
+
 .maroon {
   background-color: maroon;
+  color: white;
+}
+
+.maroon:hover {
+  background-color: firebrick;
   color: white;
 }

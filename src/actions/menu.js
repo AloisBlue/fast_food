@@ -1,6 +1,6 @@
-import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU } from "../types";
+import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, ADD_MENU } from "../types";
 import api from "../api";
-import { getErrors } from "./auth";
+import { getErrors, clearError } from "./auth";
 
 export const getAllMenu = data => ({
   type: GET_ALL_MENU,
@@ -15,6 +15,11 @@ export const getSingleMenu = data => ({
   type: GET_SINGLE_MENU,
   payload: data
 });
+
+export const makeMenu = data => ({
+  type: ADD_MENU,
+  payload: data
+})
 
 export const fetchMenu = () => (dispatch) => {
   dispatch(menuLoading());
@@ -37,5 +42,18 @@ export const fetchSingleMenu = id => (dispatch)  => {
     })
     .catch(err => {
       dispatch(getErrors(err));
+    })
+}
+
+export const newMenu = (addMenu, history) => (dispatch) => {
+  api.menu
+    .newMenu(addMenu)
+    .then(menu => {
+      dispatch(clearError())
+      dispatch(makeMenu(menu))
+      history.push("/managemenu")
+    })
+    .catch(err => {
+      dispatch(getErrors(err))
     })
 }

@@ -1,4 +1,4 @@
-import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING } from "../types";
+import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING, ADMIN_GET_ORDERS } from "../types";
 import api from "../api";
 import { getErrors, clearError } from "./auth";
 
@@ -11,6 +11,11 @@ export const getUserOrders = data => ({
   type: GET_ORDERS,
   payload: data
 });
+
+export const getAdminOrders = data => ({
+  type: ADMIN_GET_ORDERS,
+  payload: data
+})
 
 export const orderLoading = () => ({
   type: ORDER_LOADING
@@ -39,5 +44,18 @@ export const getOrders = () => (dispatch) => {
     })
     .catch(err => {
       dispatch(getErrors(err));
+    })
+}
+
+export const adminGetOrders = () => (dispatch) => {
+  dispatch(orderLoading())
+  api.order
+    .adminGetOrders()
+    .then(orders => {
+      dispatch(clearError())
+      dispatch(getAdminOrders(orders));
+    })
+    .catch(err => {
+      dispatch(getErrors(err))
     })
 }

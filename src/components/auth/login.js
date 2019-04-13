@@ -81,6 +81,9 @@ class Login extends Component {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push:PropTypes.func.isRequired
+  }).isRequired,
   errors: PropTypes.object.isRequired
 }
 

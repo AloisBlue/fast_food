@@ -19,6 +19,10 @@ export default {
     fetchSingleMenu: id =>
       axios
         .get(`/api/menus/menu/${id}`)
+        .then(res => res.data),
+    newMenu: addMenu =>
+      axios
+        .post("/api/menus/menu", { addMenu })
         .then(res => res.data)
   },
   order: {
@@ -29,6 +33,10 @@ export default {
     getOrders: () =>
       axios
         .get("/api/orders/orders/user")
+        .then(res => res.data),
+    adminGetOrders: () =>
+      axios
+        .get("/api/orders/orders")
         .then(res => res.data)
   }
 }

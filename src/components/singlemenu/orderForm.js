@@ -69,7 +69,7 @@ OrderForm.propTypes = {
   singleMenu: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   history: PropTypes.shape({
-    path:PropTypes.string.isRequired
+    push:PropTypes.func.isRequired
   }).isRequired
 }
 

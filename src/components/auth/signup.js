@@ -124,6 +124,9 @@ class Signup extends Component {
 
 Signup.propTypes = {
   signup: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push:PropTypes.func.isRequired
+  }).isRequired,
   errors: PropTypes.object.isRequired
 }
 

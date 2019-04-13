@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import OrderActions from "./orderActions";
+import CompletedOrderActions from "./completedOrderActions";
 import { adminGetOrders } from "../../actions/order"
 
 class AdminOrders extends Component {
@@ -17,7 +17,7 @@ class AdminOrders extends Component {
     if (adminOrders === null || loading) {
       adminView = <p>Loading ...</p>
     } else if (adminOrders.count > 0) {
-      adminView = <OrderActions adminOrders={adminOrders} />
+      adminView = <CompletedOrderActions adminOrders={adminOrders} />
     } else {
       adminView = <p>No orders available</p>
     }
@@ -40,7 +40,7 @@ class AdminOrders extends Component {
           </nav>
           <div className="row">
             <div className="card card-body mb-2">
-              <p className="card lead text-center bg-black text-white p-1">Orders Received</p>
+              <p className="card lead text-center bg-black text-white p-1">Complete Orders</p>
 
               {adminView}
             </div>

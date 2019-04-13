@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const OrderActions = ({ adminOrders }) => {
+const CompletedOrderActions = ({ adminOrders }) => {
   console.log(adminOrders);
   const ordersView = adminOrders.orders.map(order => (
     <tr key={order.item} className="">
@@ -10,8 +10,9 @@ const OrderActions = ({ adminOrders }) => {
       <td>{order.item}</td>
       <td>{order.quantity}</td>
       <td>{order.price}</td>
-      <td className="btn-edit">Accept</td>
-      <td className="btn-delete">Decline</td>
+      <td className={order.completed ? ('btn-success') : ('btn-light text-warning')}>
+        {order.completed ? ('Completed') : ('Finish')}
+      </td>
     </tr>
   ))
 
@@ -25,8 +26,7 @@ const OrderActions = ({ adminOrders }) => {
           <th>Order</th>
           <th>Amount of Items</th>
           <th>Total Amount</th>
-          <th>Accept</th>
-          <th>Decline</th>
+          <th>{}</th>
         </thead>
         <tbody>
           {ordersView}
@@ -37,8 +37,8 @@ const OrderActions = ({ adminOrders }) => {
   );
 }
 
-OrderActions.propTypes = {
+CompletedOrderActions.propTypes = {
   adminOrders: PropTypes.object.isRequired
 }
 
-export default OrderActions;
+export default CompletedOrderActions;

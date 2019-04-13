@@ -12,7 +12,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { isAuthenticated, isAdmin } = this.props;
+    const { isAuthenticated, user } = this.props;
     return (
       <div>
         <div className="banner" align="right">
@@ -42,7 +42,7 @@ class Navbar extends Component {
               </li>
               <li className="nav-item">
                   {
-                    isAdmin ? (
+                    user.isAdmin ? (
                       <Link className="nav-link" to="/admin">Admin</Link>
                     ) : (
                       null
@@ -50,7 +50,13 @@ class Navbar extends Component {
                   }
               </li>
             </ul>
-
+            {
+              isAuthenticated ? (
+                <small className="text-success pr-3">Logged in as: {user.email}</small>
+              ) : (
+                null
+              )
+            }
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                     {
@@ -90,12 +96,12 @@ Navbar.propTypes = {
   isAuthenticated: PropTypes.func.isRequired,
   clearCurrentUser: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  isAdmin: PropTypes.bool.isRequired
+  user: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,
-  isAdmin: state.user.user.isAdmin
+  user: state.user.user
 })
 
 export default  connect(mapStateToProps, { clearCurrentUser, logout })(Navbar);
