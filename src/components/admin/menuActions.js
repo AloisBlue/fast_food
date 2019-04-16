@@ -7,8 +7,22 @@ const MenuActions = ({ allMenu }) => {
       <td>{menu.item}</td>
       <td className="text-danger">{menu.price}</td>
       <td>{menu.description}</td>
-      <td className="btn-dark">Edit</td>
-      <td className="btn-danger">Delete</td>
+      <td>
+        <button
+          type="button"
+          className="btn btn-dark"
+        >
+          Edit
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          className="btn btn-danger"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   ))
 

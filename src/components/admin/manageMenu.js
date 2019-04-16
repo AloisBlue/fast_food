@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchMenu } from "../../actions/menu"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faList, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { fetchMenu } from "../../actions/menu";
 import MenuActions from "./menuActions";
 
 class ManageMenu extends Component {
@@ -29,17 +31,17 @@ class ManageMenu extends Component {
           <nav className="navbar">
             <ul className="nav nav-bar mb-2">
               <li className="nav-item">
-                <Link className="btn maroon nav-link" to="/admin">Manage Orders Received</Link>
+                <Link className="btn maroon nav-link" to="/admin"><FontAwesomeIcon icon={faList} /> Manage Orders Received</Link>
               </li>
               <li className="nav-item">
-                <Link className="btn btn-warning nav-link" to="/complete">Manage Orders Completion</Link>
+                <Link className="btn btn-warning nav-link" to="/complete"><FontAwesomeIcon icon={faCheck} /> Orders Completion</Link>
               </li>
               <li className="nav-item">
-                <Link className="btn btn-warning nav-link" to="/managemenu">Manage Menu</Link>
+                <Link className="btn btn-warning nav-link" to="/managemenu"><FontAwesomeIcon icon={faList} /> Manage Menu</Link>
               </li>
             </ul>
           </nav>
-          <Link className="btn btn-light text-maroon ml-3 mb-2" to="/addmenu">Add Menu Item</Link>
+          <Link className="btn btn-light text-maroon ml-3 mb-2" to="/addmenu"><FontAwesomeIcon icon={faPlus} /> Add Menu Item</Link>
           <div className="row">
             <div className="card card-body mb-2">
               <h2 className="text-center">Manage Menu</h2>

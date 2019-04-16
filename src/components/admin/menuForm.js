@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import TextFieldGroup from "../../common/textFieldGroup";
 import { newMenu } from "../../actions/menu";
 
@@ -9,16 +12,10 @@ class MenuForm extends Component {
     data: {
       item: '',
       price: '',
-      description: '',
-      menuImage: undefined
+      description: ''
     },
-    errors: {},
-    hasError: false
-  }
-
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true };
+    menuImage: '',
+    errors: {}
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,10 +27,10 @@ class MenuForm extends Component {
   onChange = (e) => {
     switch(e.target.name) {
       case 'menuImage':
-        this.setState(prevState => ({
-          ...prevState,
-          data: {...prevState.data, menuImage: e.target.files[0]}
-        }))
+        this.setState({
+          ...this.state,
+          menuImage: e.target.files[0]
+        });
         break;
       default:
         this.setState({
@@ -43,28 +40,22 @@ class MenuForm extends Component {
     }
   }
 
-  handleImageOnchange = (e) =>
-    this.setState(prevState => ({
-      ...prevState,
-      data: {...prevState.data, menuImage: e.target.files[0]}
-    }))
-
   onSubmit = (e) => {
     e.preventDefault();
+    const { data, menuImage } = this.state;
+    const formData = new FormData();
+    formData.append('menuImage', menuImage)
+    formData.set('addMenu[item]', data.item)
+    formData.set('addMenu[price]', data.price)
+    formData.set('addMenu[description]', data.description)
+    this.props.newMenu(formData, this.props.history)
 
-    console.log(this.state.data);
-
-    // this.props.newMenu(this.state.data, this.props.history)
   }
 
 
 
   render() {
-    const { data, errors, hasError } = this.state;
-    if (hasError.hasError) {
-     // You can render any custom fallback UI
-     return <h1>Something went wrong.</h1>;
-     }
+    const { data, errors } = this.state;
     return (
       <div className="menuform">
         <div className="container">
@@ -75,7 +66,7 @@ class MenuForm extends Component {
             className="btn btn-light text-maroon mb-2"
             type="button"
           >
-            Back To Manage Menu
+            <FontAwesomeIcon icon={faArrowAltCircleLeft} /> Back To Manage Menu
           </button>
           <div className="row  card-color">
             <div className="col-md-8 m-auto">
@@ -149,4 +140,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-export default connect(mapStateToProps, { newMenu })(MenuForm);
+export default connect(mapStateToProps, { newMenu })(withRouter(MenuForm));

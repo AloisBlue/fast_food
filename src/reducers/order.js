@@ -1,4 +1,5 @@
-import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING, ADMIN_GET_ORDERS } from "../types";
+import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING, ADMIN_GET_ORDERS,
+          ACCEPT_ORDER, GET_SINGLE_ORDER, DECLINE_ORDER, COMPLETE_ORDER } from "../types";
 
 const initial = {
   adminOrders: null,
@@ -28,6 +29,24 @@ const orders = (state = initial, action = {}) => {
         adminOrders: action.payload,
         loading: false
       }
+      case ACCEPT_ORDER:
+        return {
+          ...state
+        };
+      case GET_SINGLE_ORDER:
+        return {
+          ...state,
+          order: action.payload,
+          loading: false
+        };
+      case DECLINE_ORDER:
+        return {
+          ...state
+        };
+      case COMPLETE_ORDER:
+        return {
+          ...state
+        };
     default:
       return state;
   }

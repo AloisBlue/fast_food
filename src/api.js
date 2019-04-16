@@ -20,9 +20,9 @@ export default {
       axios
         .get(`/api/menus/menu/${id}`)
         .then(res => res.data),
-    newMenu: addMenu =>
+    newMenu: formData =>
       axios
-        .post("/api/menus/menu", { addMenu })
+        .post("/api/menus/menu", formData)
         .then(res => res.data)
   },
   order: {
@@ -37,6 +37,22 @@ export default {
     adminGetOrders: () =>
       axios
         .get("/api/orders/orders")
+        .then(res => res.data),
+    acceptOrder: id =>
+      axios
+        .post(`/api/orders/accept/${id}`)
+        .then(res => res.data),
+    getOrder: id =>
+      axios
+        .get(`/api/orders/order/${id}`)
+        .then(res => res.data),
+    declineOrder: id =>
+      axios
+        .post(`/api/orders/reject/${id}`)
+        .then(res => res.data),
+    completeOrder: id =>
+      axios
+        .post(`/api/orders/complete/${id}`)
         .then(res => res.data)
   }
 }

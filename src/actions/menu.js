@@ -45,9 +45,9 @@ export const fetchSingleMenu = id => (dispatch)  => {
     })
 }
 
-export const newMenu = (addMenu, history) => (dispatch) => {
+export const newMenu = (formData, history) => (dispatch) => {
   api.menu
-    .newMenu(addMenu)
+    .newMenu(formData)
     .then(menu => {
       dispatch(clearError())
       dispatch(makeMenu(menu))

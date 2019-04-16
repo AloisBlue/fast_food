@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList, faCheck } from "@fortawesome/free-solid-svg-icons";
 import OrderActions from "./orderActions";
 import { adminGetOrders } from "../../actions/order"
 
@@ -28,13 +30,13 @@ class AdminOrders extends Component {
           <nav className="navbar">
             <ul className="nav nav-bar mb-2">
               <li className="nav-item">
-                <Link className="btn maroon nav-link" to="/admin">Manage Orders Received</Link>
+                <Link className="btn maroon nav-link" to="/admin"><FontAwesomeIcon icon={faList} /> Manage Orders Received</Link>
               </li>
               <li className="nav-item">
-                <Link className="btn btn-warning nav-link" to="/complete">Manage Orders Completion</Link>
+                <Link className="btn btn-warning nav-link" to="/complete"><FontAwesomeIcon icon={faCheck} /> Manage Orders Completion</Link>
               </li>
               <li className="nav-item">
-                <Link className="btn btn-warning nav-link" to="/managemenu">Manage Menu</Link>
+                <Link className="btn btn-warning nav-link" to="/managemenu"><FontAwesomeIcon icon={faList} /> Manage Menu</Link>
               </li>
             </ul>
           </nav>
