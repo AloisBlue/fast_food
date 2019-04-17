@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { deleteMenu } from "../../actions/menu";
 
 class MenuActions extends Component {
 
   onClickButton = (id) => {
     this.props.history.push(`/editmenu/${id}`);
+  }
+
+  onClickDelete = (id) => {
+    this.props.deleteMenu(id);
   }
 
   render() {
@@ -29,6 +35,7 @@ class MenuActions extends Component {
           <button
             type="button"
             className="btn btn-danger"
+            onClick={this.onClickDelete.bind(this, menu._id)}
           >
             Delete
           </button>
@@ -61,7 +68,8 @@ MenuActions.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   }).isRequired,
+  deleteMenu: PropTypes.func.isRequired,
   allMenu: PropTypes.object.isRequired
 }
 
-export default (withRouter(MenuActions));
+export default connect(null, { deleteMenu })(withRouter(MenuActions));

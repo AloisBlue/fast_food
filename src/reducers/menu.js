@@ -1,5 +1,5 @@
 import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, UPDATE_MENU,
-  ADD_MENU } from "../types";
+  ADD_MENU, DELETE_MENU } from "../types";
 
 const initial = {
   allMenu: null,
@@ -35,6 +35,10 @@ const menu = (state = initial, action = {}) => {
       return {
         ...state,
         singleMenu: action.payload
+      };
+    case DELETE_MENU:
+      return {
+        ...state
       };
     default:
       return state;

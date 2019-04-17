@@ -27,6 +27,10 @@ export default {
     updateMenu: (putMenu, id) =>
       axios
         .put(`/api/menus/menu/${id}`, { putMenu })
+        .then(res => res.data),
+    deleteMenu: id =>
+      axios
+        .delete(`/api/menus/menu/${id}`)
         .then(res => res.data)
   },
   order: {
