@@ -45,9 +45,9 @@ class MenuForm extends Component {
     const { data, menuImage } = this.state;
     const formData = new FormData();
     formData.append('menuImage', menuImage)
-    formData.set('addMenu[item]', data.item)
-    formData.set('addMenu[price]', data.price)
-    formData.set('addMenu[description]', data.description)
+    formData.append('addMenu[item]', data.item)
+    formData.append('addMenu[price]', data.price)
+    formData.append('addMenu[description]', data.description)
     this.props.newMenu(formData, this.props.history)
 
   }
@@ -72,7 +72,6 @@ class MenuForm extends Component {
             <div className="col-md-8 m-auto">
               <h3 className="text-center text-maroon">Add Menu Item</h3>
               <p className="text-center">Proceed to add the menu of your choice</p>
-              <img src={data.menuImage} alt="" />
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   label="Item"

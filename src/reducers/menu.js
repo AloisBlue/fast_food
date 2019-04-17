@@ -1,4 +1,5 @@
-import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, ADD_MENU } from "../types";
+import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, UPDATE_MENU,
+  ADD_MENU } from "../types";
 
 const initial = {
   allMenu: null,
@@ -26,6 +27,11 @@ const menu = (state = initial, action = {}) => {
         loading: false
       };
     case ADD_MENU:
+      return {
+        ...state,
+        singleMenu: action.payload
+      };
+    case UPDATE_MENU:
       return {
         ...state,
         singleMenu: action.payload

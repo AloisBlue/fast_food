@@ -18,6 +18,7 @@ import AdminOrders from "./components/admin/adminOrders";
 import CompletedOrder from "./components/admin/completedOrder";
 import ManageMenu from "./components/admin/manageMenu";
 import MenuForm from "./components/admin/menuForm";
+import EditMenu from "./components/admin/editMenu/editMenu";
 
 const App = ({ location }) => {
   return (
@@ -26,6 +27,7 @@ const App = ({ location }) => {
         <Slider />
         <Navbar />
         <Route location={location} path="/" exact component={Landing} />
+        <AdminRoute location={location} path="/editmenu/:id" exact component={EditMenu} />
         <AdminRoute location={location} path="/addmenu" exact component={MenuForm} />
         <AdminRoute location={location} path="/admin" exact component={AdminOrders} />
         <AdminRoute location={location} path="/complete" exact component={CompletedOrder} />

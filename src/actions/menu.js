@@ -1,4 +1,5 @@
-import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, ADD_MENU } from "../types";
+import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, ADD_MENU,
+  UPDATE_MENU } from "../types";
 import api from "../api";
 import { getErrors, clearError } from "./auth";
 
@@ -18,6 +19,11 @@ export const getSingleMenu = data => ({
 
 export const makeMenu = data => ({
   type: ADD_MENU,
+  payload: data
+});
+
+export const updateMenuItem = data => ({
+  type: UPDATE_MENU,
   payload: data
 })
 
@@ -55,5 +61,18 @@ export const newMenu = (formData, history) => (dispatch) => {
     })
     .catch(err => {
       dispatch(getErrors(err))
+    })
+}
+
+export const updateMenu = (putMenu, id, history) => (dispatch) => {
+  api.menu
+    .updateMenu(putMenu, id)
+    .then(updated => {
+      dispatch(clearError())
+      dispatch(updateMenuItem(updated))
+      history.push("/managemenu")
+    })
+    .catch(err => {
+      dispatch(getErrors(err));
     })
 }

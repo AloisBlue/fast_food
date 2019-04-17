@@ -23,6 +23,10 @@ export default {
     newMenu: formData =>
       axios
         .post("/api/menus/menu", formData)
+        .then(res => res.data),
+    updateMenu: (putMenu, id) =>
+      axios
+        .put(`/api/menus/menu/${id}`, { putMenu })
         .then(res => res.data)
   },
   order: {
