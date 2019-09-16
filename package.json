@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "npm": "6.9.0",
-    "node" "10.15.3"
+    "node": "10.15.3"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
