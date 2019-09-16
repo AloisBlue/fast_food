@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 import jwtDecode from "jwt-decode";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+// import 'semantic-ui';
 import "bootstrap";
 import App from './App';
 import rootReducer from "./rootReducer";
@@ -29,10 +30,12 @@ if (localStorage.rosewoodJwt) {
   store.dispatch(loginUser(jwtDecode(localStorage.rosewoodJwt)));
 
   // check expiration
-  const currentTime = Date.now /1000;
+  const currentTime = Date.now() /1000;
+
   if (jwtDecode(localStorage.rosewoodJwt).exp < currentTime) {
     store.dispatch(logout());
-    window.location.href = '/'
+    window.location.href = '/';
+    window.location.reload(true);
   }
 }
 

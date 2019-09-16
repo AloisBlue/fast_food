@@ -19,6 +19,8 @@ import CompletedOrder from "./components/admin/completedOrder";
 import ManageMenu from "./components/admin/manageMenu";
 import MenuForm from "./components/admin/menuForm";
 import EditMenu from "./components/admin/editMenu/editMenu";
+import MenuCategory from "./components/menu/menuCategory";
+import Search from "./components/layout/search";
 
 const App = ({ location }) => {
   return (
@@ -26,6 +28,7 @@ const App = ({ location }) => {
       <div className="container card bg-pink p-1">
         <Slider />
         <Navbar />
+        <Search />
         <Route location={location} path="/" exact component={Landing} />
         <AdminRoute location={location} path="/editmenu/:id" exact component={EditMenu} />
         <AdminRoute location={location} path="/addmenu" exact component={MenuForm} />
@@ -33,7 +36,8 @@ const App = ({ location }) => {
         <AdminRoute location={location} path="/complete" exact component={CompletedOrder} />
         <AdminRoute location={location} path="/managemenu" exact component={ManageMenu} />
         <UserRoute location={location} path="/orders" exact component={Orders} />
-        <Route location={location} path="/menu/:id" exact component={SingleMenu} />
+        <Route location={location} path="/menu/:category/:id" exact component={SingleMenu} />
+        <Route location={location} path="/menu/:category" exact component={MenuCategory} />
         <GuestRoute location={location} path="/signup" exact component={Signup} />
         <GuestRoute location={location} path="/login" exact component={Login} />
         <Route location={location} path="/menu" exact component={MainMenu} />

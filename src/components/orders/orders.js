@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getOrders } from "../../actions/order";
 import OrderItems from "./orderItems";
+import Spinner from "../../common/spinner";
 
 class Orders extends Component {
   componentDidMount() {
@@ -13,7 +14,7 @@ class Orders extends Component {
     const { orders, loading } = this.props;
     let ordersView;
     if (orders === null || loading) {
-      ordersView = <p>Loading...</p>
+      ordersView = <Spinner />
     } else if (orders.count > 0) {
       ordersView = <OrderItems orders={orders} />
     } else {

@@ -34,7 +34,9 @@ body {
 }
 
 .content-left {
-  background-color: #fff3ee;
+  background: url("./images/dec3.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
   padding: 20px;
   margin-bottom: 12px;
 }
@@ -56,7 +58,7 @@ body {
 }
 
 .bg-pink {
-  background-color: #FFDECE;
+  background-color: #f5f5f5;
 }
 
 .bg-black {
@@ -65,6 +67,11 @@ body {
 
 .text-white {
   color: #ffffff;
+}
+
+.text-black {
+  color: #000000;
+  text-decoration: none;
 }
 
 .welcome-text {
@@ -91,6 +98,26 @@ body {
 .btn-delete:hover {
   background-color: #000000;
   color: white;
+}
+
+.btn-white {
+  border-color: #000000;
+}
+
+.btn-white:hover {
+  border-color: #ffffff;
+  background-color: #808080;
+  color: #ffffff;
+}
+
+.btn-maroon {
+  border-color: #b64a23;
+}
+
+.btn-maroon:hover {
+  border-color: #ffffff;
+  background-color: #808080;
+  color: #ffffff;
 }
 
 /* footer */
@@ -122,4 +149,19 @@ body {
 .maroon:hover {
   background-color: firebrick;
   color: white;
+}
+
+/* Menu Hover */
+.menu-hover:hover {
+  border: solid 1px #000000;
+  border-radius: 0.2em;
+  opacity: .8;
+}
+
+.menu-hover:hover a {
+  text-decoration: none;
+}
+
+.menu-hover:hover h5 {
+  color: maroon;
 }

@@ -41,7 +41,7 @@ class EditMenuForm extends Component {
         <div className="container">
           <button
             type="button"
-            className="btn btn-light text-maroon mb-2"
+            className="btn btn-maroon text-maroon mb-2"
             onClick={() => {
               this.props.history.push("/managemenu")
             }}
@@ -84,6 +84,9 @@ class EditMenuForm extends Component {
 }
 
 EditMenuForm.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
   updateMenu: PropTypes.func.isRequired,
   singleMenu: PropTypes.object.isRequired
 }

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchSingleMenu } from "../../actions/menu";
 import MenuDetails from "./menuDetails";
+import Spinner from "../../common/spinner";
 
 class SingleMenu extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class SingleMenu extends Component {
     let menuDisplay;
 
     if (singleMenu === null || loading) {
-      menuDisplay = <p>loading...</p>
+      menuDisplay = <Spinner />
     } else if (singleMenu.length !== 0) {
       menuDisplay = <MenuDetails singleMenu={singleMenu} />
     } else {

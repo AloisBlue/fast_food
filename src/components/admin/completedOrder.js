@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faCheck } from "@fortawesome/free-solid-svg-icons";
 import CompletedOrderActions from "./completedOrderActions";
-import { adminGetOrders } from "../../actions/order"
+import { adminGetOrders } from "../../actions/order";
+import Spinner from "../../common/spinner";
 
 class AdminOrders extends Component {
   componentDidMount() {
@@ -17,7 +18,7 @@ class AdminOrders extends Component {
     let adminView;
 
     if (adminOrders === null || loading) {
-      adminView = <p>Loading ...</p>
+      adminView = <Spinner />
     } else if (adminOrders.count > 0) {
       adminView = <CompletedOrderActions adminOrders={adminOrders} />
     } else {

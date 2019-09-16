@@ -1,5 +1,6 @@
 import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING, ADMIN_GET_ORDERS,
-          ACCEPT_ORDER, GET_SINGLE_ORDER, DECLINE_ORDER, COMPLETE_ORDER } from "../types";
+          ACCEPT_ORDER, GET_SINGLE_ORDER, DECLINE_ORDER, DELETE_ORDER,
+          COMPLETE_ORDER } from "../types";
 
 const initial = {
   adminOrders: null,
@@ -47,6 +48,10 @@ const orders = (state = initial, action = {}) => {
         return {
           ...state
         };
+      case DELETE_ORDER:
+        return {
+          ...state
+        }
     default:
       return state;
   }

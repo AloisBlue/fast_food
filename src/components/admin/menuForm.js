@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import TextFieldGroup from "../../common/textFieldGroup";
+import SelectListGroup from "../../common/selectListGroup";
+import TextAreaFieldGroup from "../../common/textAreaFieldGroup";
 import { newMenu } from "../../actions/menu";
 
 class MenuForm extends Component {
@@ -12,7 +14,8 @@ class MenuForm extends Component {
     data: {
       item: '',
       price: '',
-      description: ''
+      description: '',
+      category: ''
     },
     menuImage: '',
     errors: {}
@@ -48,6 +51,7 @@ class MenuForm extends Component {
     formData.append('addMenu[item]', data.item)
     formData.append('addMenu[price]', data.price)
     formData.append('addMenu[description]', data.description)
+    formData.append('addMenu[category]', data.category)
     this.props.newMenu(formData, this.props.history)
 
   }
@@ -56,6 +60,22 @@ class MenuForm extends Component {
 
   render() {
     const { data, errors } = this.state;
+    const asterisk = <span style = {{ color: 'red'}}>*</span>
+
+    const options = [
+      { label: 'Select Food Category', value: 0 },
+      { label: 'Break Fast', value: 'Break Fast' },
+      { label: 'Cereals', value: 'Cereals' },
+      { label: 'Snacks', value: 'Snacks' },
+      { label: 'Salad', value: 'Salad' },
+      { label: 'Soft Drinks', value: 'Soft Drinks' },
+      { label: 'Whole Meal', value: 'Whole Meal' },
+      { label: 'Kienyenji', value: 'Kienyenji' },
+      { label: 'Bakings', value: 'Bakings' },
+      { label: 'Meat Products', value: 'Meat Products' },
+      { label: 'Others', value: 'Others' }
+    ]
+
     return (
       <div className="menuform">
         <div className="container">
@@ -63,7 +83,7 @@ class MenuForm extends Component {
             onClick={() => {
               this.props.history.push("/managemenu")
             }}
-            className="btn btn-light text-maroon mb-2"
+            className="btn btn-maroon text-maroon mb-2"
             type="button"
           >
             <FontAwesomeIcon icon={faArrowAltCircleLeft} /> Back To Manage Menu
@@ -72,19 +92,21 @@ class MenuForm extends Component {
             <div className="col-md-8 m-auto">
               <h3 className="text-center text-maroon">Add Menu Item</h3>
               <p className="text-center">Proceed to add the menu of your choice</p>
+              <small style={{fontStyle: 'italic'}}>All fields marked with {asterisk} are required</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  label="Item"
+                  label={asterisk}
                   id="item"
                   name="item"
                   type="text"
                   placeholder="Enter item"
                   value={data.item}
                   onChange={this.onChange}
+                  info="Food item"
                   error={errors.item}
                 />
                 <TextFieldGroup
-                  label="Price"
+                  label={asterisk}
                   id="price"
                   name="price"
                   type="number"
@@ -92,19 +114,32 @@ class MenuForm extends Component {
                   placeholder="Enter price"
                   value={data.price}
                   onChange={this.onChange}
+                  info="Price"
                   error={errors.price}
                 />
-                <TextFieldGroup
-                  label="Description"
-                  id="description"
+                <TextAreaFieldGroup
+                  label={asterisk}
                   name="description"
                   type="text"
                   placeholder="Enter description"
                   value={data.description}
                   onChange={this.onChange}
+                  info="Give a short description"
                   error={errors.description}
                 />
-                <label className="text-muted" htmlFor="menuImage">Item Image</label><br />
+                <SelectListGroup
+                  label={asterisk}
+                  id="category"
+                  name="category"
+                  type="text"
+                  placeholder="Enter food category"
+                  value={data.category}
+                  onChange={this.onChange}
+                  options={options}
+                  info="Select food category"
+                  error={errors.category}
+                />
+              <label className="text-muted" htmlFor="menuImage">{asterisk} Item Image</label><br />
                 <input
                   className=""
                   id="menuImage"

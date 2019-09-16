@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMenu } from "../../actions/menu";
-import MenuItems from "./menuActions";
-import Search from "./search";
+import MainMenuItems from "./mainMenuActions";
+import Spinner from "../../common/spinner";
 
 class MainMenu extends Component {
   componentDidMount() {
@@ -12,30 +12,27 @@ class MainMenu extends Component {
 
   render() {
     const { allMenu, loading } = this.props;
-    // console.log(allMenu, loading);
     let menuItems;
-    let searchView;
 
     if (allMenu === null || loading) {
-      menuItems = <p>Loading ...</p>
+      menuItems = <Spinner />
     } else if (allMenu.menu.length > 0) {
-      searchView = <Search allMenu={allMenu} />
-      menuItems = allMenu.menu.map(menu => (
+      menuItems = allMenu.menu.map(menu =>
         <div className="float-left mr-1">
-          <MenuItems key={menu._id} menu={menu} />
+          <MainMenuItems key={menu[0].category} menu={menu} />
         </div>
-      ))
+      )
     } else {
       menuItems = <h4>No menu available ...</h4>
     }
     return (
       <div className="mainmenu">
         <div className="container">
+          <div className="card m-auto bg-black">
+            <h3 className="text-center m-auto text-white"><i>Menu by Category</i></h3>
+          </div>
           <h5 className="text-center text-maroon">Prepared by the best...make order</h5>
           <div className="clearfix">
-            <div className="float-right mb-4 mr-4">
-              {searchView}
-            </div>
           </div>
           <div>
             <span>{ menuItems }</span>

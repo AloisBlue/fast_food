@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMenu } from "../../actions/menu";
 import MenuItems from "../menu/menuActions";
+import Spinner from "../../common/spinner";
 
 class MainMenu extends Component {
   componentDidMount() {
@@ -11,13 +12,13 @@ class MainMenu extends Component {
 
   render() {
     const { allMenu, loading } = this.props;
-    // console.log(allMenu, loading);
     let menuItems;
 
     if (allMenu === null || loading) {
-      menuItems = <p>Loading ...</p>
+      menuItems = <Spinner />
     } else if (allMenu.menu.length > 0) {
-      menuItems = allMenu.menu.slice(0, 4).map(menu => (
+      // combine all the available arrays into one array.
+      menuItems = Array.prototype.concat(...allMenu.menu).slice(0, 4).map(menu => (
         <div className="float-left mr-1">
           <MenuItems key={menu._id} menu={menu} />
         </div>

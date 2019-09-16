@@ -1,9 +1,10 @@
 import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, UPDATE_MENU,
-  ADD_MENU, DELETE_MENU } from "../types";
+  ADD_MENU, DELETE_MENU, GET_MENU_BY_CATEGORY } from "../types";
 
 const initial = {
   allMenu: null,
   singleMenu: null,
+  categoryMenu: null,
   loading: false
 }
 
@@ -39,6 +40,12 @@ const menu = (state = initial, action = {}) => {
     case DELETE_MENU:
       return {
         ...state
+      };
+    case GET_MENU_BY_CATEGORY:
+      return {
+        ...state,
+        categoryMenu: action.payload,
+        loading: false
       };
     default:
       return state;

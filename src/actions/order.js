@@ -1,6 +1,6 @@
 import { MAKE_ORDER, GET_ORDERS, ORDER_LOADING, ADMIN_GET_ORDERS,
           ACCEPT_ORDER, GET_SINGLE_ORDER, DECLINE_ORDER,
-          COMPLETE_ORDER} from "../types";
+          COMPLETE_ORDER, DELETE_ORDER} from "../types";
 import api from "../api";
 import { getErrors, clearError } from "./auth";
 
@@ -23,23 +23,28 @@ export const orderLoading = () => ({
   type: ORDER_LOADING
 });
 
-export const acceptAnOrder = (data) => ({
+export const acceptAnOrder = data => ({
   type: ACCEPT_ORDER,
   payload: data
 });
 
-export const getAnOrder = (data) => ({
+export const getAnOrder = data => ({
   type: GET_SINGLE_ORDER,
   payload: data
 });
 
-export const declineAnOrder = (data) => ({
+export const declineAnOrder = data => ({
   type: DECLINE_ORDER,
   payload: data
 });
 
-export const completeAnOrder = (data) => ({
+export const completeAnOrder = data => ({
   type: COMPLETE_ORDER,
+  payload: data
+});
+
+export const removeOrder = data => ({
+  type: DELETE_ORDER,
   payload: data
 });
 
@@ -132,4 +137,16 @@ export const completeOrder = id => (dispatch) => {
     .catch(res => {
       dispatch(getErrors(res));
     })
+}
+
+export const deleteOrder = id => (dispatch) => {
+  api.order
+    .deleteOrder(id)
+    .then(res => {
+      dispatch(removeOrder(res));
+      window.location.reload(true);
+    })
+    .catch(err => {
+      dispatch(getErrors(err));
+    });
 }

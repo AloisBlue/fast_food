@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faList, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { fetchMenu } from "../../actions/menu";
 import MenuActions from "./menuActions";
+import Spinner from "../../common/spinner";
 
 class ManageMenu extends Component {
 
@@ -17,9 +18,9 @@ class ManageMenu extends Component {
     const { allMenu, loading } = this.props;
     let menuView;
 
-    if (allMenu ===null || loading) {
-      menuView = <p>Loading...</p>
-    } else if (allMenu.count > 0) {
+    if (allMenu === null || loading) {
+      menuView = <Spinner />
+    } else if (allMenu.itemsCount > 0) {
       menuView = <MenuActions allMenu={allMenu} />
     } else {
       menuView = <p>No menu available</p>
@@ -41,7 +42,7 @@ class ManageMenu extends Component {
               </li>
             </ul>
           </nav>
-          <Link className="btn btn-light text-maroon ml-3 mb-2" to="/addmenu"><FontAwesomeIcon icon={faPlus} /> Add Menu Item</Link>
+          <Link className="btn btn-maroon text-maroon ml-3 mb-2" to="/addmenu"><FontAwesomeIcon icon={faPlus} /> Add Menu Item</Link>
           <div className="row">
             <div className="card card-body mb-2">
               <h2 className="text-center">Manage Menu</h2>

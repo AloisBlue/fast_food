@@ -31,6 +31,10 @@ export default {
     deleteMenu: id =>
       axios
         .delete(`/api/menus/menu/${id}`)
+        .then(res => res.data),
+    fetchMenuByCategory: category =>
+      axios
+        .get(`/api/menus/category/${category}`)
         .then(res => res.data)
   },
   order: {
@@ -61,6 +65,10 @@ export default {
     completeOrder: id =>
       axios
         .post(`/api/orders/complete/${id}`)
+        .then(res => res.data),
+    deleteOrder: id =>
+      axios
+        .delete(`/api/orders/order/${id}`)
         .then(res => res.data)
   }
 }

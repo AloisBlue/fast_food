@@ -1,5 +1,5 @@
 import { GET_ALL_MENU, MENU_LOADING, GET_SINGLE_MENU, ADD_MENU,
-  UPDATE_MENU, DELETE_MENU } from "../types";
+  UPDATE_MENU, DELETE_MENU, GET_MENU_BY_CATEGORY } from "../types";
 import api from "../api";
 import { getErrors, clearError } from "./auth";
 
@@ -29,6 +29,11 @@ export const updateMenuItem = data => ({
 
 export const removeMenuItem = data => ({
   type: DELETE_MENU,
+  payload: data
+});
+
+export const getMenuByCategory = data => ({
+  type: GET_MENU_BY_CATEGORY,
   payload: data
 });
 
@@ -82,7 +87,7 @@ export const updateMenu = (putMenu, id, history) => (dispatch) => {
     })
 }
 
-export const deleteMenu = (id) => (dispatch) => {
+export const deleteMenu = id => (dispatch) => {
   api.menu
     .deleteMenu(id)
     .then(res => {
@@ -91,5 +96,17 @@ export const deleteMenu = (id) => (dispatch) => {
     })
     .catch(err => {
       dispatch(getErrors(err))
+    })
+}
+
+export const fetchMenuByCategory = category => (dispatch) => {
+  dispatch(menuLoading());
+  api.menu
+    .fetchMenuByCategory(category)
+    .then(res => {
+      dispatch(getMenuByCategory(res));
+    })
+    .catch(err => {
+      dispatch(getErrors(err));
     })
 }

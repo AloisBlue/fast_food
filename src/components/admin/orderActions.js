@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import Moment from "react-moment";
 import { acceptOrder, declineOrder } from "../../actions/order";
 
 // eslint-disable-next-line
@@ -15,6 +16,12 @@ class OrderActions extends Component {
       (order.status.accepted === false && order.status.rejected === false) ? (
         <tr key={order.item} className="">
           <td>{order.user.userName}</td>
+          <td>
+            <Moment format="dddd MMMM DD, YYYY">{order.createdAt}</Moment>
+          </td>
+          <td>
+            <Moment format="hh:mm:ss">{order.createdAt}</Moment>
+          </td>
           <td>{order.id}</td>
           <td>{order.item}</td>
           <td>{order.quantity}</td>
@@ -55,6 +62,8 @@ class OrderActions extends Component {
         <table className="table table-hover table-responsive">
           <thead>
             <th>Ordered By</th>
+            <th>Date</th>
+            <th>Time</th>
             <th>Order Id</th>
             <th>Order</th>
             <th>Amount of Items</th>

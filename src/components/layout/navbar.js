@@ -18,7 +18,7 @@ class Navbar extends Component {
         <div className="banner" align="right">
           <p>Rosewood Food Sellers</p>
         </div>
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
         <div className="container">
           <Link className="navbar-brand" to="/">Home</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -93,7 +93,7 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  isAuthenticated: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   clearCurrentUser: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
