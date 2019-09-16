@@ -63,5 +63,5 @@
     "prettier": "^1.16.4",
     "supertest": "^4.0.2"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "https://fathomless-coast-77712.herokuapp.com"
 }
