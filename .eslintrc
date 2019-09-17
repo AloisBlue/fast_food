@@ -18,6 +18,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-expressions/no-unused-expressions": 2,
     "jsx-a11y/label-has-for": [ 2, {
       "required": {
           "every": [ "id" ]
