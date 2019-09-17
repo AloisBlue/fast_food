@@ -62,6 +62,5 @@
     "jest": "^24.7.1",
     "prettier": "^1.16.4",
     "supertest": "^4.0.2"
-  },
-  "proxy": "${apiUrl}"
+  }
 }
